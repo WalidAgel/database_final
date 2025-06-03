@@ -47,4 +47,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+        public function canAccessFilament(): bool
+    {
+        // Sesuaikan sesuai logika, misalnya hanya admin
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Nama yang ditampilkan di panel Filament
+     */
+    public function getFilamentName(): string
+    {
+        return $this->username ?? $this->email ?? 'Pengguna';
+    }
 }
